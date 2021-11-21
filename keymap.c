@@ -1,19 +1,5 @@
 /*
-Copyright 2019 @foostan
-Copyright 2020 Drashna Jaelre <@drashna>
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
+My custom layou for Corne Keyboard V3.1 uwu
 */
 
 #include QMK_KEYBOARD_H
@@ -26,131 +12,124 @@ enum layer_number {
   _ADJUST = 8
 };
 
+//Custom macro key CTRL + ALT + DEL
+#define KC_CAD	LALT(LCTL(KC_DEL))
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* QWERTY
  * ,-----------------------------------------.                    ,-----------------------------------------.                  |------+------+------+------+------+------|
- * | ESC  |   Q  |   W  |   E  |   R  |   T  |                    |   Y  |   U  |   I  |   O  |   P  |  -   |
+ * | Tab  |   Q  |   W  |   E  |   R  |   T  |                    |   Y  |   U  |   I  |   O  |   P  |  -   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |LShift|   A  |   S  |   D  |   F  |   G  |                    |   H  |   J  |   K  |   L  |   ;  |  '   |
  * |------+------+------+------+------+------|                     ------+------+------+------+------+------|
  * |LCTRL |   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |   ,  |   .  |   /  |RShift|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *                   | LAlt | LGui |LOWER | /Space  /       \Enter \  |RAISE |BackSP| RAlt |
- *                   |      |      |      |/       /         \      \ |      |      |      |
- *                   `----------------------------'           '------''--------------------'
+ *                           | LGui |LOWER | /Space  /       \Enter \  |RAISE | RAlt |
+ *                          |      |      |/       /         \      \ |      |      |
+ *                          `---------------------'           '------''-----------'
  */
  
   [_QWERTY] = LAYOUT(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      KC_TAB ,  KC_Q  ,  KC_W  ,  KC_E  ,  KC_R  ,  KC_T  ,                       KC_Y  ,  KC_U  ,  KC_I  ,  KC_O  ,  KC_P  ,  KC_MINS,
+      KC_TAB ,  KC_Q  ,  KC_W  ,  KC_E  ,  KC_R  ,  KC_T  ,                       KC_Y  ,  KC_U  ,  KC_I  ,  KC_O  ,  KC_P  , KC_MINS,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT,  KC_A  ,  KC_S  ,  KC_D  ,  KC_F  ,  KC_G  ,                       KC_H  ,  KC_J  ,  KC_K  ,  KC_L  , KC_SCLN, KC_QUOT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LCTL,  KC_Z  ,  KC_X  ,  KC_C  ,  KC_V  ,  KC_B  ,                       KC_N  ,  KC_M  , KC_COMM,  KC_DOT, KC_SLSH,  KC_RSFT,
+      KC_LCTL,  KC_Z  ,  KC_X  ,  KC_C  ,  KC_V  ,  KC_B  ,                       KC_N  ,  KC_M  , KC_COMM, KC_DOT , KC_SLSH, KC_RSFT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LALT,MO(_LOWER),KC_SPC,     KC_ENT,   MO(_RAISE), KC_BSPC
+                                          KC_LALT,MO(_LOWER),KC_SPC,    KC_ENT ,MO(_RAISE),KC_RALT
                                       //`--------------------------'  `--------------------------'
 
   ),
+
+    /* LOWER
+ * ,-----------------------------------------.                    ,-----------------------------------------.                  |------+------+------+------+------+------|
+ * | ESC   |  1   |   2  |  3  |   4  |   5  |                    |   6   |   7  |   8  |   9  |   0  | DEL |
+ * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+ * |LShift|      |      |      |  (   |   )  |                    |   [  |   ]  |   |  |   L  |      |   =  |
+ * |------+------+------+------+------+------|                     ------+------+------+------+------+------|
+ * |LCTRL |      |      |      |     |       |-------|    |-------|   {  |   }  |      |      |      |      |
+ * `-----------------------------------------/       /     \      \-----------------------------------------'
+ *                           | LGui |LOWER | /Space  /       \Enter \  |RAISE | RAlt |
+ *                          |      |      |/       /         \      \ |      |      |
+ *                          `---------------------'           '------''-----------'
+ */
 
   [_LOWER] = LAYOUT(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      KC_TRNS, KC_AT  , KC_BSLS,  KC_NO ,   KC_NO,  KC_NO,                     KC_LCBR , KC_RCBR,  KC_NO ,  KC_UP  , KC_NO , KC_EQL ,
+      KC_GESC,  KC_1  ,  KC_2  ,  KC_3  ,  KC_4  ,  KC_5  ,                       KC_6  ,  KC_7  ,  KC_8  ,  KC_9  ,  KC_0  , KC_DEL ,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_TRNS,    KC_NO,  KC_NO,   KC_NO, KC_LPRN, KC_RPRN,                     KC_LBRC , KC_RBRC, KC_LEFT, KC_DOWN, KC_RGHT, KC_NO  ,
+      KC_TRNS, KC_NO  , KC_NO  ,  KC_NO , KC_LPRN, KC_RPRN,                     KC_LBRC , KC_RBRC, KC_BSLS, KC_L   , KC_NO  , KC_EQL ,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_TRNS, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,                      KC_NO,  KC_NO, LSFT(KC_COMM),LSFT(KC_DOT),LSFT(KC_SLSH), KC_NO,
+      KC_TRNS, KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  ,                     KC_LCBR,  KC_RCBR, KC_NO  , KC_NO  , KC_NO  , KC_NO,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LGUI, KC_TRNS,  KC_TRNS,     KC_TRNS,   KC_TRNS, KC_RALT
+                                          KC_TRNS, KC_TRNS, KC_TRNS,   KC_TRNS ,KC_TRNS , KC_BSPC
                                       //`--------------------------'  `--------------------------'
   ),
 
+    /* RAISE
+ * ,-----------------------------------------.                    ,-----------------------------------------.                  |------+------+------+------+------+------|
+ * | CAD   |     |       |      |      |  F5  |                    |      |      |  Up  |      |      | F12 |
+ * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+ * | CAPS |      |      |      |      |      |                    |      | Right| Down | Left |      |      |
+ * |------+------+------+------+------+------|                     ------+------+------+------+------+------|
+ * |LCTRL|CTRL-Z|CRTL-X|CRTL-V|CTRL-C|       |-------|    |-------|      |      |      |      |      |RShift|
+ * `-----------------------------------------/       /     \      \-----------------------------------------'
+ *                           | LGui |LOWER | /Space  /       \Enter \  |RAISE | RAlt |
+ *                          |      |      |/       /         \      \ |      |      |
+ *                          `---------------------'           '------''-----------'
+ */
+
   [_RAISE] = LAYOUT(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      KC_GESC , KC_F1 , KC_F2  , KC_F3  , KC_F4  , KC_F5  ,                      KC_NO  ,  KC_7  ,  KC_8  ,  KC_9  , KC_RPRN, KC_TRNS,
+      KC_CAD , KC_NO , KC_NO  , KC_NO  , KC_NO  ,  KC_F5  ,                       KC_NO  , KC_NO ,  KC_UP ,  KC_NO , KC_NO  , KC_F12 ,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_TRNS, KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 ,                      KC_NO  ,  KC_4  ,  KC_5  ,  KC_6  , KC_BSLS,  KC_EQL,
+      KC_CAPS, KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO ,                       KC_NO  , KC_LEFT, KC_DOWN, KC_RGHT,  KC_NO , KC_NO  ,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_TRNS  , KC_F11 , KC_F12 , KC_NO  , KC_NO  , KC_NO  ,                      KC_NO  ,  KC_1  ,  KC_2  ,  KC_3  , KC_PIPE, KC_NO,
+    KC_TRNS  ,LCTL(KC_Z),LCTL(KC_X),LCTL(KC_C),LCTL(KC_V),KC_NO,                 KC_NO  ,  KC_NO  ,  KC_NO  ,  KC_NO  , KC_NO, KC_NO,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LGUI, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_0
+                                          KC_LGUI, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_RALT
                                       //`--------------------------'  `--------------------------'
   )
 };
 
+//Config RGB
+void rgb_matrix_indicators_user(void) {
+  #ifdef RGB_MATRIX_ENABLE
+  switch (biton32(layer_state)) {
+    case _QWERTY:
+      for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
+          rgb_matrix_set_color(i, 60, 0, 156);
+      }
+      break;
+    case _RAISE:
+      for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
+          rgb_matrix_set_color(i, 0, 181, 36);
+      }
+      break;
+    case _LOWER:
+      for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
+         rgb_matrix_set_color(i, 18, 121, 255);
+      }
+      break;
+  }
+  #endif
+}
+
+//Config OLED
+
+
+// OLED_ENABLE
 #ifdef OLED_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
-  if (!is_keyboard_master()) {
-    return OLED_ROTATION_180;  // flips the display 180 degrees if offhand
-  }
-  return rotation;
-}
-
-// #define L_BASE 0
-// #define L_LOWER 2
-// #define L_RAISE 4
-// #define L_ADJUST 8
-
-void oled_render_layer_state(void) {
-    oled_write_P(PSTR("Layer: "), false);
-    switch (layer_state) {
-        case _QWERTY:
-            oled_write_ln_P(PSTR("Default"), false);
-            break;
-        case _LOWER:
-            oled_write_ln_P(PSTR("Lower"), false);
-            break;
-        case _RAISE:
-            oled_write_ln_P(PSTR("Raise"), false);
-            break;
-    }
-}
-
-
-// char keylog_str[24] = {};
-
-// const char code_to_name[60] = {
-//     ' ', ' ', ' ', ' ', 'a', 'b', 'c', 'd', 'e', 'f',
-//     'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
-//     'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
-//     '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
-//     'R', 'E', 'B', 'T', '_', '-', '=', '[', ']', '\\',
-//     '#', ';', '\'', '`', ',', '.', '/', ' ', ' ', ' '};
-
-// void set_keylog(uint16_t keycode, keyrecord_t *record) {
-//   char name = ' ';
-//     if ((keycode >= QK_MOD_TAP && keycode <= QK_MOD_TAP_MAX) ||
-//         (keycode >= QK_LAYER_TAP && keycode <= QK_LAYER_TAP_MAX)) { keycode = keycode & 0xFF; }
-//   if (keycode < 60) {
-//     name = code_to_name[keycode];
-//   }
-
-//   // update keylog
-//   snprintf(keylog_str, sizeof(keylog_str), "%dx%d, k%2d : %c",
-//            record->event.key.row, record->event.key.col,
-//            keycode, name);
-// }
-
-// void oled_render_keylog(void) {
-//     oled_write(keylog_str, false);
-// }
-
-void render_bootmagic_status(bool status) {
-    /* Show Ctrl-Gui Swap options */
-    static const char PROGMEM logo[][2][3] = {
-        {{0x97, 0x98, 0}, {0xb7, 0xb8, 0}},
-        {{0x95, 0x96, 0}, {0xb5, 0xb6, 0}},
-    };
-    if (status) {
-        oled_write_ln_P(logo[0][0], false);
-        oled_write_ln_P(logo[0][1], false);
+    if (is_keyboard_master()) {
+        return OLED_ROTATION_270;
     } else {
-        oled_write_ln_P(logo[1][0], false);
-        oled_write_ln_P(logo[1][1], false);
+        return rotation;
     }
 }
 
-void oled_render_logo(void) {
+void render_crkbd_logo(void) {
     static const char PROGMEM crkbd_logo[] = {
         0x80, 0x81, 0x82, 0x83, 0x84, 0x85, 0x86, 0x87, 0x88, 0x89, 0x8a, 0x8b, 0x8c, 0x8d, 0x8e, 0x8f, 0x90, 0x91, 0x92, 0x93, 0x94,
         0xa0, 0xa1, 0xa2, 0xa3, 0xa4, 0xa5, 0xa6, 0xa7, 0xa8, 0xa9, 0xaa, 0xab, 0xac, 0xad, 0xae, 0xaf, 0xb0, 0xb1, 0xb2, 0xb3, 0xb4,
@@ -159,20 +138,72 @@ void oled_render_logo(void) {
     oled_write_P(crkbd_logo, false);
 }
 
-void oled_task_user(void) {
-    // if (is_keyboard_master()) {
-    //     oled_render_layer_state();
-    //     oled_render_keylog();
-    // } else {
-    //     oled_render_logo();
-    // }
-    oled_render_logo();
+
+
+void render_default_layer_state(void) {
+    oled_write_P(PSTR("Lyout"), false);
+    switch (get_highest_layer(default_layer_state)) {
+        case _QWERTY:
+            oled_write_P(PSTR(" QRTY"), false);
+            break;
+    }
 }
 
-// bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-//   if (record->event.pressed) {
-//     set_keylog(keycode, record);
-//   }
-//   return true;
-// }
-#endif // OLED_ENABLE
+void render_layer_state(void) {
+    oled_write_P(PSTR("LAYER"), false);
+    oled_write_P(PSTR("Lower"), layer_state_is(_LOWER));
+    oled_write_P(PSTR("Raise"), layer_state_is(_RAISE));
+}
+
+void render_keylock_status(uint8_t led_usb_state) {
+    oled_write_P(PSTR("Lock:"), false);
+    oled_write_P(PSTR(" "), false);
+    oled_write_P(PSTR("N"), led_usb_state & (1 << USB_LED_NUM_LOCK));
+    oled_write_P(PSTR("C"), led_usb_state & (1 << USB_LED_CAPS_LOCK));
+    oled_write_ln_P(PSTR("S"), led_usb_state & (1 << USB_LED_SCROLL_LOCK));
+}
+
+void render_mod_status(uint8_t modifiers) {
+    oled_write_P(PSTR("Mods:"), false);
+    oled_write_P(PSTR(" "), false);
+    oled_write_P(PSTR("S"), (modifiers & MOD_MASK_SHIFT));
+    oled_write_P(PSTR("C"), (modifiers & MOD_MASK_CTRL));
+    oled_write_P(PSTR("A"), (modifiers & MOD_MASK_ALT));
+    oled_write_P(PSTR("G"), (modifiers & MOD_MASK_GUI));
+}
+
+void render_bootmagic_status(void) {
+    /* Show Ctrl-Gui Swap options */
+    static const char PROGMEM logo[][2][3] = {
+        {{0x97, 0x98, 0}, {0xb7, 0xb8, 0}},
+        {{0x95, 0x96, 0}, {0xb5, 0xb6, 0}},
+    };
+    oled_write_P(PSTR("BTMGK"), false);
+    oled_write_P(PSTR(" "), false);
+    oled_write_P(logo[0][0], !keymap_config.swap_lctl_lgui);
+    oled_write_P(logo[1][0], keymap_config.swap_lctl_lgui);
+    oled_write_P(PSTR(" "), false);
+    oled_write_P(logo[0][1], !keymap_config.swap_lctl_lgui);
+    oled_write_P(logo[1][1], keymap_config.swap_lctl_lgui);
+    oled_write_P(PSTR(" NKRO"), keymap_config.nkro);
+}
+
+void render_status_main(void) {
+    /* Show Keyboard Layout  */
+    render_default_layer_state();
+    render_mod_status(get_mods());
+    render_bootmagic_status();
+
+}
+
+void oled_task_user(void) {
+    if (is_keyboard_master()) {
+        render_status_main();  // Renders the current keyboard state (layer, lock, caps, scroll, etc)
+    } else {
+        render_crkbd_logo();
+    }
+}
+
+#endif
+
+
