@@ -7,10 +7,11 @@ My custom layou for Corne Keyboard V3.1 uwu
 
 enum layer_number {
   _QWERTY = 0,
-  _LOWER = 2,
-  _RAISE = 4,
-  _ADJUST = 8
+  _LOWER = 1,
+  _RAISE = 2,
+  _ADJUST = 3
 };
+
 
 //Custom macro key CTRL + ALT + DEL
 #define KC_CAD	LALT(LCTL(KC_DEL))
@@ -24,7 +25,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                     ------+------+------+------+------+------|
  * |LCTRL |   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |   ,  |   .  |   /  |RShift|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *                           | LGui |LOWER | /Space  /       \Enter \  |RAISE | RAlt |
+ *                           | LALT |LOWER | /Space  /       \Enter \  |RAISE | RAlt |
  *                          |      |      |/       /         \      \ |      |      |
  *                          `---------------------'           '------''-----------'
  */
@@ -57,7 +58,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_LOWER] = LAYOUT(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      KC_GESC,  KC_1  ,  KC_2  ,  KC_3  ,  KC_4  ,  KC_5  ,                       KC_6  ,  KC_7  ,  KC_8  ,  KC_9  ,  KC_0  , KC_DEL ,
+      KC_ESC,  KC_1  ,  KC_2  ,  KC_3  ,  KC_4  ,  KC_5  ,                       KC_6  ,  KC_7  ,  KC_8  ,  KC_9  ,  KC_0  , KC_DEL ,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_TRNS, KC_NO  , KC_NO  ,  KC_NO , KC_LPRN, KC_RPRN,                     KC_LBRC , KC_RBRC, KC_BSLS, KC_L   , KC_NO  , KC_EQL ,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -69,9 +70,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     /* RAISE
  * ,-----------------------------------------.                    ,-----------------------------------------.                  |------+------+------+------+------+------|
- * | CAD   |     |       |      |      |  F5  |                    |      |      |  Up  |      |      | F12 |
+ * | CAD   |  F1 |   F2  |  F3  |  F4  |  F5  |                    |      |      |  Up  |      |      | F12 |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | CAPS |      |      |      |      |      |                    |      | Right| Down | Left |      |      |
+ * | CAPS |  F6  |  F7  |  F8  |  F9  | F10 |                    |      | Right| Down | Left |      |      |
  * |------+------+------+------+------+------|                     ------+------+------+------+------+------|
  * |LCTRL|CTRL-Z|CRTL-X|CRTL-V|CTRL-C|       |-------|    |-------|      |      |      |      |      |RShift|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
@@ -82,41 +83,71 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_RAISE] = LAYOUT(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      KC_CAD , KC_NO , KC_NO  , KC_NO  , KC_NO  ,  KC_F5  ,                       KC_NO  , KC_NO ,  KC_UP ,  KC_NO , KC_NO  , KC_F12 ,
+      KC_CAD , KC_F1 , KC_F2  , KC_F3  , KC_F4  ,  KC_F5  ,                       KC_NO  , KC_NO ,  KC_UP ,  KC_NO , KC_NO  , KC_F12 ,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_CAPS, KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO ,                       KC_NO  , KC_LEFT, KC_DOWN, KC_RGHT,  KC_NO , KC_NO  ,
+      KC_CAPS, KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 ,                       KC_NO  , KC_LEFT, KC_DOWN, KC_RGHT,  KC_NO , KC_NO  ,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
     KC_TRNS  ,LCTL(KC_Z),LCTL(KC_X),LCTL(KC_C),LCTL(KC_V),KC_NO,                 KC_NO  ,  KC_NO  ,  KC_NO  ,  KC_NO  , KC_NO, KC_NO,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LGUI, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_RALT
+                                          KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_RALT
+                                      //`--------------------------'  `--------------------------'
+  ),
+
+    /* ADJUST
+ * ,-----------------------------------------.                    ,-----------------------------------------.                  |------+------+------+------+------+------|
+ * |        |     |     |      |      |      |                    |      |      |      |      |      | END |
+ * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+ * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
+ * |------+------+------+------+------+------|                     ------+------+------+------+------+------|
+ * |     |      |      |      |      |       |-------|    |-------|      |      |      |      |      |      |
+ * `-----------------------------------------/       /     \      \-----------------------------------------'
+ *                           | LGui |LOWER | /Space  /       \Enter \  |RAISE | RAlt |
+ *                          |      |      |/       /         \      \ |      |      |
+ *                          `---------------------'           '------''-----------'
+ */
+
+  [_ADJUST] = LAYOUT(
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+      KC_HOME , KC_NO , KC_NO  , KC_NO  , KC_NO  ,  KC_NO  ,                       KC_NO  , KC_NO ,  KC_NO ,  KC_NO , KC_NO  , KC_END ,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      KC_NO, KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO ,                       KC_NO  , KC_NO, KC_NO, KC_NO,  KC_NO , KC_NO  ,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+    KC_NO  ,KC_NO,KC_NO,KC_NO,KC_NO,KC_NO,                 KC_NO  ,  KC_NO  ,  KC_NO  ,  KC_NO  , KC_NO, KC_NO,
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                          KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_RALT
                                       //`--------------------------'  `--------------------------'
   )
 };
 
 //Config RGB
-void rgb_matrix_indicators_user(void) {
-  #ifdef RGB_MATRIX_ENABLE
-  switch (biton32(layer_state)) {
-    case _QWERTY:
-      for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
-          rgb_matrix_set_color(i, 60, 0, 156);
-      }
-      break;
-    case _RAISE:
-      for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
-          rgb_matrix_set_color(i, 0, 181, 36);
-      }
-      break;
-    case _LOWER:
-      for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
-         rgb_matrix_set_color(i, 18, 121, 255);
-      }
-      break;
-  }
-  #endif
-}
+//rgb_matrix_set_color_all(60, 0, 156);
+// void rgb_matrix_indicators_user(void) {
+//   #ifdef RGB_MATRIX_ENABLE
+//   switch (biton32(layer_state)) {
+//     case _QWERTY:
+//       for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
+//           rgb_matrix_set_color(i, 60, 0, 156);
+//       }
+//       break;
+//     case _RAISE:
+//       for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
+//           rgb_matrix_set_color(i, 0, 181, 36);
+//       }
+//       break;
+//     case _LOWER:
+//       for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
+//          rgb_matrix_set_color(i, 18, 121, 255);
+//       }
+//       break;
+//   }
+//   #endif
+// }
 
 //Config OLED
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+  return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+}
 
 
 // OLED_ENABLE
